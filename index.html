@@ -9,6 +9,17 @@
 </head>
 
 <body>
+    <button class="rock">Rock</button>
+    <button class="paper">Paper</button>
+    <button class="scissors">Scissors</button>
+    <div>
+        <p class="output"></p>
+        <p class="result"></p>
+        <p class="user-score">Your Score: 0</p>
+        <p class="comp-score">Computer Score: 0</p>
+    </div>
+
+
     <script>
         function computerPlay() {
             let choice = Math.floor(Math.random() * 3);
@@ -37,29 +48,112 @@
             }
         }
 
-        function game() {
-            let playerScore = 0;
-            let computerScore = 0;
-            for (let i = 0; i < 5; i++) {
-                let playerSelection = prompt("Rock, paper, or scissors? ");
-                let result = round(playerSelection, computerPlay());
-                console.log(result);
 
-                if (result.includes("Win")) {
-                    playerScore++;
-                } else if (result.includes("Lose")) {
-                    computerScore++;
+        let playerScore = 0;
+        let computerScore = 0;
+
+        const rockButton = document.querySelector(".rock");
+        const scissorsButton = document.querySelector(".scissors")
+        const paperButton = document.querySelector(".paper");
+        const output = document.querySelector(".output");
+        const userScore = document.querySelector(".user-score");
+        const compScore = document.querySelector(".comp-score");
+        const resulty = document.querySelector(".result");
+        let finished = false;
+
+        rockButton.addEventListener("click", () => {
+
+            if (finished) {
+                return;
+            }
+
+
+            let result = round("ROCK", computerPlay());
+            output.innerText = result;
+
+            if (result.includes("Win")) {
+                playerScore++;
+                userScore.innerText = "Your Score: " +
+                    playerScore;
+            } else if (result.includes("Lose")) {
+                computerScore++;
+                compScore.innerText = "Computer Score: " + computerScore;
+            }
+
+            if (playerScore >= 5 || computerScore >= 5) {
+                if (playerScore > computerScore) {
+                    resulty.innerText = "Congratulations! You won!";
+                } else if (playerScore < computerScore) {
+                    resulty.innerText = "You lost the game";
+                } else {
+                    resulty.innerText = "You tied this game!";
                 }
+
+                finished = true;
+            }
+        })
+
+        scissorsButton.addEventListener("click", () => {
+            if (finished) {
+                return;
             }
 
-            if (playerScore > computerScore) {
-                console.log("Congratulations! You won!");
-            } else if (playerScore < computerScore) {
-                console.log("You lost the game");
-            } else {
-                console.log("You tied this game!");
+
+            let result = round("SCISSORS", computerPlay());
+            output.innerText = result;
+
+            if (result.includes("Win")) {
+                playerScore++;
+                userScore.innerText = "Your Score: " +
+                    playerScore;
+            } else if (result.includes("Lose")) {
+                computerScore++;
+                compScore.innerText = "Computer Score: " + computerScore;
             }
-        }
+
+            if (playerScore >= 5 || computerScore >= 5) {
+                if (playerScore > computerScore) {
+                    resulty.innerText = "Congratulations! You won!";
+                } else if (playerScore < computerScore) {
+                    resulty.innerText = "You lost the game";
+                } else {
+                    resulty.innerText = "You tied this game!";
+                }
+
+                finished = true;
+            }
+        })
+
+        paperButton.addEventListener("click", () => {
+            if (finished) {
+                return;
+            }
+
+
+            let result = round("PAPER", computerPlay());
+            output.innerText = result;
+
+            if (result.includes("Win")) {
+                playerScore++;
+                userScore.innerText = "Your Score: " +
+                    playerScore;
+            } else if (result.includes("Lose")) {
+                computerScore++;
+                compScore.innerText = "Computer Score: " + computerScore;
+            }
+
+            if (playerScore >= 5 || computerScore >= 5) {
+                if (playerScore > computerScore) {
+                    resulty.innerText = "Congratulations! You won!";
+                } else if (playerScore < computerScore) {
+                    resulty.innerText = "You lost the game";
+                } else {
+                    resulty.innerText = "You tied this game!";
+                }
+
+                finished = true;
+            }
+        })
     </script>
 </body>
 
